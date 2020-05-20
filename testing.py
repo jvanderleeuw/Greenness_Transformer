@@ -105,7 +105,7 @@ def run_test(filename):
         if open_file:
             # Get the pixels and call the calculation
             pix = np.array(open_file.ReadAsArray())
-            calc_val = algorithm_rgb.calculate(np.rollaxis(pix, 0, 3))
+            calc_val = algorithm_rgb.percent_green(np.rollaxis(pix, 0, 3))
 
             # Check for unsupported types
             if isinstance(calc_val, set):

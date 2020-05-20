@@ -6,20 +6,20 @@ import numpy as np
 
 # Definitions
 # Please replace these definitions' values with the correct ones
-VERSION = '1.0'
+VERSION = '2.0'
 
 # Information on the creator of this algorithm
 ALGORITHM_AUTHOR = 'Unknown'
-ALGORITHM_AUTHOR_EMAIL = ''
+ALGORITHM_AUTHOR_EMAIL = 'Unknown@gmail.com'
 ALGORITHM_CONTRIBUTORS = [""]
 
 ALGORITHM_NAME = 'my nifty one'
 ALGORITHM_DESCRIPTION = 'This algorithm calculates the niftyness of RGB plot-level images'
 
 # Citation information for publication (more information in HOW_TO.md)
-CITATION_AUTHOR = 'unknown'
-CITATION_TITLE = ''
-CITATION_YEAR = ''
+CITATION_AUTHOR = 'Unknown'
+CITATION_TITLE = 'Unknown'
+CITATION_YEAR = '2020'
 
 # The name of one or more variables returned by the algorithm, separated by commas (more information in HOW_TO.md)
 # If only one name is specified, no comma's are used.

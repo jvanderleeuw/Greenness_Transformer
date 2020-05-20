@@ -10,7 +10,8 @@ It is assumed that:
 The following steps can be taken to develop these algorithms for inclusion into a processing pipeline.
 
 1. [Setup](#setup): Click the `Use this template` button in GitHub to make a copy of this repository (or run `git clone`)
-2. [Definitions](#definitions): Fill in and modify the definitions in the algorithm_rgb.py file
+2. [Definitions](#definitions): Change the "calculate" function in the line starting with calc_val to whichever function in
+algorithm_rgb.py that you would like to test.
 3. [Test](#test): Run the `testing.py` script to run algorithms and validate the results
 4. [Generate](#generate): Run `generate.py` to create a Dockerfile
 5. [Docker](#build_docker): Create a Docker image for the algorithms and publish it
@@ -26,7 +27,7 @@ If you are not on GitHub, you will need to setup your `git` environment and clon
 ### Fill in your definitions <a name="definitions" />
 To fill in the needed definitions, first open the `algorithm_rgb.py` file in your favorite editor.
 
-If you are modifying your existing code, you should consider updating the version number definition: `VERSION`.
+If you are modifying the existing code, you should consider updating the version number definition: `VERSION`.
 It's assumed that [Semantic Version numbers](https://semver.org/) will be used, but any methodology can be used.
 
 Fill in the algorithm definitions with the creator(s) of the algorithm: `ALGORITHM_AUTHOR`, `ALGORITHM_AUTHOR_EMAIL`, `ALGORITHM_NAME`, and `ALGORITHM_DESCRIPTION`.
@@ -75,8 +76,10 @@ The testing script expects to have either a list of source plot image files, or 
 For example, if your files reside in `/user/myself/test_images` the command to test could be the following:
 ```./testing.py /user/myself/test_images```
 
+Provided outputs for the sample images can be found at [this link](https://docs.google.com/document/d/12gFt_BRN_vtx-Yq8gWeiMGIIYU_btTdMFoKk0Bug7z4/edit?usp=sharing)
+
 ### Generate the docker build command file <a name="generate" />
-Now that you have created your algorithm and tested it out to your satisfaction, it's time to make a Docker image so that it can run as part of a workflow.
+Now that you have tested the algorithms out to your satisfaction, it's time to make a Docker image so that it can run as part of a workflow.
 
 To assist in this effort we've provided a script named `generate.py` to produce a file containing the Docker commands needed.
 Running this script will not only produce a Docker command file, named `Dockerfile` but also two other files that can be used to install additional dependencies your algorithm needs.
