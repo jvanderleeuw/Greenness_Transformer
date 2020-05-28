@@ -23,13 +23,11 @@ def _get_variables_header_fields() -> str:
     units_len = len(units)
 
     if labels_len != len(variables):
-        sys.stderr.write("The number of defined labels doesn't match the number of defined variables")
-        sys.stderr.write("  continuing processing")
-        sys.stderr.write("\n")
+        sys.stderr.write("The number of defined labels doesn't match the number of defined variables \n")
+        sys.stderr.write("  continuing processing \n")
     if units_len != len(variables):
-        sys.stderr.write("The number of defined units doesn't match the number of defined variables")
-        sys.stderr.write("  continuing processing")
-        sys.stderr.write("\n")
+        sys.stderr.write("The number of defined units doesn't match the number of defined variables \n")
+        sys.stderr.write("  continuing processing \n")
 
     headers = ''
     for idx, variable_name in enumerate(variables):

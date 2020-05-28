@@ -29,11 +29,11 @@ VARIABLE_NAMES = 'excess greenness index, green leaf index, cive, normalized dif
 
 # Variable units matching the order of VARIABLE_NAMES, also comma-separated.
 VARIABLE_UNITS = '[-510:510], [-1:1], [-255:255], [-127:129], [-255:255], [-255:332], ' \
-                 '[-1000:1000], [-1000:1000], [-255:255], [-255:255], [0:100]'
+                 '[-1000:1000], [-1000:1000], [-255:255], [-255:255] [0:100]'
 
 # Variable labels matching the order of VARIABLE_NAMES, also comma-separated.
-VARIABLE_LABELS = 'excess_greenness_index, green_leaf_index, cive, normalized_difference_index(pxarray), ' \
-                'excess_red, exgr, combined_indices_1, combined_indices_2, vegetative_index, ngrdi, percent_green'
+VARIABLE_LABELS = 'excess_greenness_index, green_leaf_index, cive, normalized_difference_index, ' \
+                'excess_red, exgr, combined_indices_1, combined_indices_2, vegetative_index, ngrdi percent_green'
 
 # Optional override for the generation of a BETYdb compatible csv file
 WRITE_BETYDB_CSV = True
@@ -61,7 +61,12 @@ def green_leaf_index(pxarray: np.ndarray) -> float:
     """
     red, green, blue = get_red_green_blue_averages(pxarray)
 
-    return round((2 * green - red - blue) / (2 * green + red + blue), 2)
+    denominator = 2 * green + red + blue
+
+    if denominator == 0:
+        return 0.0
+    else:
+        return round((2 * green - red - blue) / denominator, 2)
 
 
 def cive(pxarray: np.ndarray) -> float:
@@ -79,7 +84,12 @@ def normalized_difference_index(pxarray: np.ndarray) -> float:
     """
     red, green, blue = get_red_green_blue_averages(pxarray)
 
-    return round(128 * ((green - red) / (green + red)) + 1, 2)
+    denominator = green + red
+
+    if denominator == 0:
+        return 0.0
+    else:
+        return round(128 * ((green - red) / denominator) + 1, 2)
 
 
 def excess_red(pxarray: np.ndarray) -> float:
@@ -123,7 +133,12 @@ def vegetative_index(pxarray: np.ndarray) -> float:
     """
     red, green, blue = get_red_green_blue_averages(pxarray)
 
-    return round(green / ((red ** 0.667) * (blue ** .333)), 2)
+    denominator = (red ** 0.667) * (blue ** .333)
+
+    if denominator == 0:
+        return 0.0
+    else:
+        return round(green / denominator, 2)
 
 
 def ngrdi(pxarray: np.ndarray) -> float:
@@ -132,7 +147,12 @@ def ngrdi(pxarray: np.ndarray) -> float:
     """
     red, green, blue = get_red_green_blue_averages(pxarray)
 
-    return round((green - red) / (green + red), 2)
+    denominator = green + red
+
+    if denominator == 0:
+        return 0.0
+    else:
+        return round((green - red) / denominator, 2)
 
 
 def percent_green(pxarray: np.ndarray) -> float:
@@ -149,7 +169,12 @@ def percent_green(pxarray: np.ndarray) -> float:
     # blueness value
     blue = np.sum(pxarray[:, :, 2])
 
-    return round(green / (red + green + blue), 2)
+    denominator = red + green + blue
+
+    if denominator == 0:
+        return 0.0
+    else:
+        return round(green / denominator, 2)
 
 
 def get_red_green_blue_averages(pxarray: np.ndarray) -> tuple:
