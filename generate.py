@@ -15,7 +15,7 @@ DOCKERFILE_NAME = 'Dockerfile'
 # Template contents of the Docker build file
 DOCKERFILE_CONTENTS = [
     'FROM agpipeline/rgb-plot-base-image:latest',
-    'LABEL maintainer="Someone <someone@example.com>"',
+    'LABEL maintainer="Jacob van der Leeuw <jvanderleeuw@email.arizona.edu>"',
     '',
     'COPY requirements.txt packages.txt /home/extractor/',
     '',
